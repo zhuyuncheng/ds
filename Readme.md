@@ -1,8 +1,5 @@
 # DS
 
-Java实现常用的数据结构及结构算法
-
-
 ## 目录
 - 数组（Array）
 - 堆栈（Stack）
@@ -12,3 +9,11 @@ Java实现常用的数据结构及结构算法
 - 图（Graph）
 - 堆积（Heap）
 - 散列表（Hash）
+
+## 最后骗一波关注
+
+请扫码或搜索"小疯子呵呵哒"关注我的个人微信订阅号
+<div align=center>
+  <img src="https://zhuyuncheng.top/assets/weChatQRCode/2.jpeg" width = "500"/>
+</div>
+
