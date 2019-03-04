@@ -91,12 +91,12 @@ public class BinaryTree {
      * 后序遍历(非递归)， 左-右-根
      */
     public void postOrderTraversalNotRecursion(Node root) {
-        Stack<Node> s1 = new Stack<>();
-        Stack<Node> s2 = new Stack<>();
+        Stack<Node> s1 = new Stack<Node>();
+        Stack<Node<String>> s2 = new Stack<>();
 
         s1.push(root);
         while (!s1.isEmpty()) {
-            Node node = s1.pop();
+            Node<String> node = s1.pop();
             s2.push(node);
             if (node.left != null) {
                 s1.push(node.left);
@@ -137,15 +137,15 @@ public class BinaryTree {
      *   D   E F   G
      */
     public static void main(String[] args) {
-        Node d = new Node("D");
-        Node e = new Node("E");
+        Node<String> d = new Node<>("D");
+        Node<String> e = new Node<>("E");
 
-        Node f = new Node("F");
-        Node g = new Node("G");
+        Node<String> f = new Node<>("F");
+        Node<String> g = new Node<>("G");
 
-        Node c = new Node(f, g, "C");
-        Node b = new Node(d, e, "B");
-        Node root = new Node(b, c, "A");
+        Node<String> c = new Node<>(f, g, "C");
+        Node<String> b = new Node<>(d, e, "B");
+        Node<String> root = new Node<>(b, c, "A");
 
         BinaryTree main = new BinaryTree();
 
@@ -176,16 +176,16 @@ public class BinaryTree {
         System.out.println();
     }
 
-    private static class Node {
-        Node left;
-        Node right;
-        String val;
+    private static class Node<T> {
+        Node<String> left;
+        Node<String> right;
+        T val;
 
-        Node(String val) {
+        Node(T val) {
             this.val = val;
         }
 
-        Node(Node left, Node right, String val) {
+        Node(Node<String> left, Node<String> right, T val) {
             this.left = left;
             this.right = right;
             this.val = val;
