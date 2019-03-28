@@ -1,9 +1,8 @@
 package top.zhuyuncheng.ds.linked_list;
 
-import com.sun.deploy.util.StringUtils;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class SingleLinkedList<T> {
     private int size;
@@ -117,12 +116,11 @@ public class SingleLinkedList<T> {
     @Override
     public String toString() {
         List<String> list = new ArrayList<>();
-        Node curr = head;
-        while (curr != null) {
+        for (Node curr = head; curr != null; curr = curr.next) {
             list.add(String.valueOf(curr.data));
-            curr = curr.next;
         }
-        return StringUtils.join(list, ", ");
+        return list.stream()
+                .collect(Collectors.joining(" -> ", "[", "]"));
     }
 
 }
