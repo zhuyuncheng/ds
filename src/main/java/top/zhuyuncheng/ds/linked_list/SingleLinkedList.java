@@ -1,10 +1,13 @@
 package top.zhuyuncheng.ds.linked_list;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Iterator;
+import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
-public class SingleLinkedList<T> {
+public class SingleLinkedList<T> implements Iterable<T> {
     private int size;
     private Node head;
 
@@ -105,6 +108,36 @@ public class SingleLinkedList<T> {
         return false;
     }
 
+    @Override
+    public Iterator<T> iterator() {
+
+        return new Iterator<T>() {
+            Node curr = head;
+            @Override
+            public boolean hasNext() {
+                return curr != null;
+            }
+
+            @Override
+            public T next() {
+                T data = curr.data;
+                curr = curr.next;
+                return data;
+            }
+        };
+    }
+
+    public void forEach(Consumer<? super T> action) {
+        Objects.requireNonNull(action);
+        for (Node curr = head; curr != null; curr = curr.next) {
+            action.accept(curr.data);
+        }
+    }
+
+    public Stream<T> stream() {
+        return StreamSupport.stream(spliterator(), false);
+    }
+
     public boolean isEmpty() {
         return size == 0;
     }
@@ -115,12 +148,7 @@ public class SingleLinkedList<T> {
 
     @Override
     public String toString() {
-        List<String> list = new ArrayList<>();
-        for (Node curr = head; curr != null; curr = curr.next) {
-            list.add(String.valueOf(curr.data));
-        }
-        return list.stream()
-                .collect(Collectors.joining(" -> ", "[", "]"));
+        return this.stream().map(String::valueOf).collect(Collectors.joining(" -> ", "[", "]"));
     }
 
 }
